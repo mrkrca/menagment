@@ -12,7 +12,7 @@ function ProjectSidebar({onCreateProject}) {
   </div>
   <nav className="flex flex-col gap-1 min-w-[240px] p-2 font-sans text-base font-normal text-gray-700">
   
-    <button onClick={onCreateProject} className=" flex bg-gray-600 w-fit p-3 rounded-xl hover:bg-gray-700 text-white font-semibold">+ ADD PROJECT</button>
+    <button onClick={onCreateProject} className=" bg-gray-600 w-fit p-3 rounded-xl hover:bg-gray-700 text-white font-semibold">+ ADD PROJECT</button>
 
   </nav>
 </div>

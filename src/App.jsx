@@ -10,11 +10,7 @@ import PopUpCreateProject from "./components/PopUpCreateProject";
 function App() {
 
 
-const [isPopUpVisible, setIsPopUpVisible] = useState(false);
 
-  function handleCloseModal() {
-    setIsPopUpVisible(false);
-  }
 
   function handleProjectCreate() {
     console.log("Create project");
@@ -29,7 +25,7 @@ const [isPopUpVisible, setIsPopUpVisible] = useState(false);
         <div className="flex flex-grow items-center justify-center">
           <NoProjectSelected onCreateProject={handleProjectCreate}/>
         </div>
-        <PopUpCreateProject isOpen={isPopUpVisible} onClose={handleCloseModal}/>
+        
       </div>
     </>
   );
