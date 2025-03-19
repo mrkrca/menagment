@@ -5,6 +5,8 @@ import PopUpCreateProject from "./components/PopUpCreateProject";
 
 function App() {
   const [isPopUpVisible, setIsPopUpVisible] = useState(false);
+  const [projects, setProjects] = useState([]);
+  const [newProject, setNewProject] = useState('');
 
   function handleProjectCreate() {
     setIsPopUpVisible(true);
@@ -14,10 +16,23 @@ function App() {
     setIsPopUpVisible(false);
   }
 
+  function handleNewProject(e) {
+    e.preventDefault();
+    setProjects([...projects, newProject]);
+    setNewProject('');
+    handleCloseModal();
+  }
+
+  function handleProjectCreateNew(e) {
+    setNewProject(e.target.value);
+  }
   return (
     <>
       <div className="flex h-screen">
-        <ProjectSidebar onCreateProject={handleProjectCreate} />
+        <ProjectSidebar 
+        onCreateProject={handleProjectCreate}  
+        projects={projects}
+        />
         <div className="flex flex-grow items-center justify-center">
           <NoProjectSelected 
             onCreateProject={handleProjectCreate} 
@@ -26,7 +41,7 @@ function App() {
             onClose={handleCloseModal} 
           />
         </div>
-        <PopUpCreateProject isOpen={isPopUpVisible} onClose={handleCloseModal} />
+        <PopUpCreateProject handleCreateNew={handleProjectCreateNew} handleNew={handleNewProject} isOpen={isPopUpVisible} onClose={handleCloseModal} />
       </div>
     </>
   );
