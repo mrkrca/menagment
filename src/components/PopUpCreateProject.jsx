@@ -24,10 +24,22 @@ export default function PopUpCreateProject({ isOpen, onClose, handleNew, handleC
                 <label htmlFor="project-name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Project Name</label>
                 <input 
                   type="text" 
-                  name="project-name" 
+                  name="name" 
                   id="project-name" 
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" 
                   placeholder="Project Name" 
+                  required 
+                  onChange={handleCreateNew}
+                />
+              </div>
+              <div>
+                <label htmlFor="project-description" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Project Description</label>
+                <input 
+                  type="text" 
+                  name="description" 
+                  id="project-description" 
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" 
+                  placeholder="Project Description" 
                   required 
                   onChange={handleCreateNew}
                 />

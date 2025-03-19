@@ -2,11 +2,17 @@ import React, { useState } from "react";
 import ProjectSidebar from "./components/ProjectSideBar";
 import NoProjectSelected from "./components/NoProjectSelected";
 import PopUpCreateProject from "./components/PopUpCreateProject";
+import SelectedProject from "./components/SelectedProject";
 
 function App() {
   const [isPopUpVisible, setIsPopUpVisible] = useState(false);
   const [projects, setProjects] = useState([]);
-  const [newProject, setNewProject] = useState('');
+  const [newProject, setNewProject] = useState({ name: '', description: '' });
+  const [selectedProject, setSelectedProject] = useState(false);
+
+  function handleProjectSelect() {
+    setSelectedProject(true);
+  }
 
   function handleProjectCreate() {
     setIsPopUpVisible(true);
@@ -19,29 +25,41 @@ function App() {
   function handleNewProject(e) {
     e.preventDefault();
     setProjects([...projects, newProject]);
-    setNewProject('');
+    setNewProject({ name: '', description: '' });
     handleCloseModal();
   }
 
   function handleProjectCreateNew(e) {
-    setNewProject(e.target.value);
+    const { name, value } = e.target;
+    setNewProject(prevState => ({
+      ...prevState,
+      [name]: value
+    }));
   }
+
   return (
     <>
       <div className="flex h-screen">
         <ProjectSidebar 
-        onCreateProject={handleProjectCreate}  
-        projects={projects}
+          onCreateProject={handleProjectCreate}  
+          projects={projects}
+          openProject={handleProjectSelect}
         />
-        <div className="flex flex-grow items-center justify-center">
+        {selectedProject ?  <SelectedProject /> : <div className="flex flex-grow items-center justify-center">
           <NoProjectSelected 
             onCreateProject={handleProjectCreate} 
             isPopUpVisible={isPopUpVisible} 
-            setIsPopUpVisible={setIsPopUpVisible} 
             onClose={handleCloseModal} 
+
           />
-        </div>
-        <PopUpCreateProject handleCreateNew={handleProjectCreateNew} handleNew={handleNewProject} isOpen={isPopUpVisible} onClose={handleCloseModal} />
+        </div> }
+       
+        <PopUpCreateProject 
+          handleCreateNew={handleProjectCreateNew}
+          handleNew={handleNewProject}
+          isOpen={isPopUpVisible}
+          onClose={handleCloseModal}
+        />
       </div>
     </>
   );

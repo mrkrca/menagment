@@ -1,6 +1,6 @@
 import React from 'react';
 
-function ProjectSidebar({ onCreateProject, projects }) {
+function ProjectSidebar({ onCreateProject, projects, openProject }) {
   return (
     <div className="relative flex flex-col bg-clip-border rounded-xl bg-zinc-900 text-gray-700 h-full w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5">
       <div className="mb-2 p-4">
@@ -12,7 +12,7 @@ function ProjectSidebar({ onCreateProject, projects }) {
       <ul className='flex flex-col gap-2 p-2 font-sans text-base font-normal text-gray-700'>
         {projects.map((project, index) => (
           <li key={index} className="flex w-fit items-center justify-between p-2 bg-gray-100 rounded-lg hover:bg-gray-400">
-            <button>{project}</button>
+            <button onClick={openProject}>{project.name}</button>
           </li>
         ))}
       </ul>

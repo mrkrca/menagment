@@ -1,10 +1,12 @@
 import React from "react";
 import PopUpCreateProject from "./PopUpCreateProject";
-
+import notSelectedPicture from "../assets/no-projects.png";
 function NoProjectSelected({ onCreateProject, isPopUpVisible, onClose }) {
   return (
     <>
+
       <div className="flex flex-col items-center justify-center gap-5">
+        <img className="w-1/4" src={notSelectedPicture} alt="photo" />
         <h1 className="text-zinc-900 font-semibold text-4xl">No project selected</h1>
         <p className="text-xl">Please select a project or get started with the new one</p>
         <button 
