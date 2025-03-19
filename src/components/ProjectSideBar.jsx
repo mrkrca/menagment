@@ -11,8 +11,8 @@ function ProjectSidebar({ onCreateProject, projects, openProject }) {
       </nav>
       <ul className='flex flex-col gap-2 p-2 font-sans text-base font-normal text-gray-700'>
         {projects.map((project, index) => (
-          <li key={index} className="flex w-fit items-center justify-between p-2 bg-gray-100 rounded-lg hover:bg-gray-400">
-            <button onClick={openProject}>{project.name}</button>
+          <li key={index} className="flex items-center justify-between p-2 bg-gray-100 rounded-lg hover:bg-gray-200">
+            <button className='w-full' onClick={() => openProject(project)}>{project.name}</button>
           </li>
         ))}
       </ul>

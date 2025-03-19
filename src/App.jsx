@@ -8,12 +8,12 @@ function App() {
   const [isPopUpVisible, setIsPopUpVisible] = useState(false);
   const [projects, setProjects] = useState([]);
   const [newProject, setNewProject] = useState({ name: '', description: '' });
-  const [selectedProject, setSelectedProject] = useState(false);
+  const [selectedProject, setSelectedProject] = useState(null);
 
-  function handleProjectSelect() {
-    setSelectedProject(true);
+
+  function handleProjectSelect(project) {
+    setSelectedProject(project);
   }
-
   function handleProjectCreate() {
     setIsPopUpVisible(true);
   }
@@ -45,14 +45,19 @@ function App() {
           projects={projects}
           openProject={handleProjectSelect}
         />
-        {selectedProject ?  <SelectedProject /> : <div className="flex flex-grow items-center justify-center">
-          <NoProjectSelected 
-            onCreateProject={handleProjectCreate} 
-            isPopUpVisible={isPopUpVisible} 
-            onClose={handleCloseModal} 
-
-          />
-        </div> }
+   {selectedProject ? (
+          <div className="flex flex-grow mt-20 justify-center ">
+            <SelectedProject project={selectedProject} />
+          </div>
+        ) : (
+          <div className="flex flex-grow items-center justify-center">
+            <NoProjectSelected 
+              onCreateProject={handleProjectCreate} 
+              isPopUpVisible={isPopUpVisible} 
+              onClose={handleCloseModal} 
+            />
+          </div>
+        )}
        
         <PopUpCreateProject 
           handleCreateNew={handleProjectCreateNew}
