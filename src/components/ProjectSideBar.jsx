@@ -4,7 +4,7 @@ import React from 'react';
 
 function ProjectSidebar() {
   return (
-    <div className="relative flex flex-col bg-clip-border rounded-xl bg-zinc-900 text-gray-700 h-[calc(100vh-2rem)] w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5">
+    <div className=" relative flex flex-col bg-clip-border rounded-xl bg-zinc-900 text-gray-700 h-full w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5 ">
   <div className="mb-2 p-4">
     <h5 className="block antialiased tracking-normal font-sans text-2xl font-bold leading-snug text-white">YOUR PROJECTS</h5>
   </div>
