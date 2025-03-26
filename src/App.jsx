@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState , useRef} from "react";
 import ProjectSidebar from "./components/ProjectSideBar";
 import NoProjectSelected from "./components/NoProjectSelected";
 import PopUpCreateProject from "./components/PopUpCreateProject";
@@ -8,8 +8,14 @@ import moment from 'moment';
 function App() {
   const [isPopUpVisible, setIsPopUpVisible] = useState(false);
   const [projects, setProjects] = useState([]);
-  const [newProject, setNewProject] = useState({ name: '', description: '', date: moment().format('YYYY-MM-DD'), tasks: [] });
+//  const [newProject, setNewProject] = useState({ name: '', description: '', date: moment().format('YYYY-MM-DD'), tasks: [] });
   const [selectedProject, setSelectedProject] = useState(null);
+
+
+  const nameRef = useRef();
+  const descriptionRef = useRef();
+  const dateRef = useRef();
+
 
   function handleProjectSelect(project) {
     setSelectedProject(project);
@@ -23,6 +29,30 @@ function App() {
     setIsPopUpVisible(false);
   }
 
+
+  function handleNewProject(e) {
+    e.preventDefault();
+
+    
+    const newProject = {
+      name: nameRef.current.value,
+      description: descriptionRef.current.value,
+      date: dateRef.current.value || moment().format('YYYY-MM-DD'),
+      tasks: [],
+    };
+
+    
+    setProjects([...projects, newProject]);
+
+   
+    nameRef.current.value = '';
+    descriptionRef.current.value = '';
+    dateRef.current.value = moment().format('YYYY-MM-DD');
+
+    handleCloseModal(); 
+  }
+
+/*
   function handleNewProject(e) {
     e.preventDefault();
     setProjects([...projects, newProject]); 
@@ -37,7 +67,7 @@ function App() {
       [name]: value, 
     }));
   }
-
+*/
   function handleDeleteProject() {
     const newProjects = projects.filter(project => project.name !== selectedProject.name);
     setProjects(newProjects);
@@ -80,11 +110,13 @@ function App() {
           </div>
         )}
         <PopUpCreateProject 
-          handleCreateNew={handleProjectCreateNew}
+       //   handleCreateNew={handleProjectCreateNew}
           handleNew={handleNewProject}
           isOpen={isPopUpVisible}
           onClose={handleCloseModal}
-         
+          nameRef={nameRef} 
+          descriptionRef={descriptionRef}
+          dateRef={dateRef}
         />
       </div>
     </>

@@ -1,7 +1,8 @@
-import React from 'react';
+
+import React, {useRef} from 'react';
 import Input from './input';
 
-export default function PopUpCreateProject({ isOpen, onClose, handleNew, handleCreateNew }) {
+export default function PopUpCreateProject({ isOpen, onClose, handleNew, handleCreateNew,  nameRef, descriptionRef, dateRef }) {
   if (!isOpen) return null;
 
   return (
@@ -29,7 +30,8 @@ export default function PopUpCreateProject({ isOpen, onClose, handleNew, handleC
                   type="text"
                   placeholder="Project Name"
                   id="project-name" 
-                  
+                  ref={nameRef}
+                  value={nameRef}
                 />
               </div>
               <div>
@@ -40,7 +42,8 @@ export default function PopUpCreateProject({ isOpen, onClose, handleNew, handleC
                   type="text"
                   placeholder="Project Description"
                   id="project-description" 
-                  
+                  ref={descriptionRef}
+                  value={descriptionRef}
                 />
               </div>
               <div>
@@ -51,7 +54,8 @@ export default function PopUpCreateProject({ isOpen, onClose, handleNew, handleC
                   type="date"
                   placeholder="Project Date"
                   id="project-date"
-                  
+                  ref={dateRef}
+                  value={dateRef}
                 />
               </div>
               <button type="submit" className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Create Project</button>
