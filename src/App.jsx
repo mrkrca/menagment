@@ -9,7 +9,7 @@ import moment from 'moment';
 function App() {
   const [isPopUpVisible, setIsPopUpVisible] = useState(false);
   const [projects, setProjects] = useState([]);
-  const [newProject, setNewProject] = useState({ name: '', description: '', date: moment().format('YYYY-MM-DD') });
+  const [newProject, setNewProject] = useState([{ name: '', description: '', date: moment().format('YYYY-MM-DD'), tasks: [] }]);
   const [selectedProject, setSelectedProject] = useState(null);
 
 
@@ -45,6 +45,18 @@ function App() {
     setSelectedProject(null);
   }
 
+
+  function handleUpdateTasks(updatedTasks) {
+    const updatedProjects = projects.map(project =>
+      project.name === selectedProject.name
+        ? { ...project, tasks: updatedTasks }
+        : project
+    );
+    setProjects(updatedProjects);
+  
+
+    setSelectedProject({ ...selectedProject, tasks: updatedTasks });
+  }
   return (
     <>
       <div className="flex h-screen">
@@ -55,10 +67,11 @@ function App() {
         />
    {selectedProject ? (
           <div className="flex flex-grow mt-20 justify-center ">
-            <SelectedProject 
-            project={selectedProject}
+           <SelectedProject
+            project={selectedProject || { name: '', description: '', date: '', tasks: [] }}
             deleteProject={handleDeleteProject}
-             />
+            updateTasks={handleUpdateTasks}
+           />
 
           </div>
         ) : (
