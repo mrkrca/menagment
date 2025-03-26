@@ -15,16 +15,23 @@ export default function SelectedProject({ project, deleteProject }) {
   }
   
 
-  function handleCreateTaskClick(){
-    setTasks([...tasks, task]);
-    
+  function handleCreateTaskClick() {
+    if (task.trim() !== '') { 
+      setTasks([...tasks, task]);
+      setTask('');
+    }
+  }
 
+
+  function deleteTask(taskToDelete) {
+    const newTasks = tasks.filter(task => task !== taskToDelete);
+    setTasks(newTasks);
   }
 
 
   return (
-    <div className="w-1/2 h-screen ">
-      <div className="flex flex-col justify-center text-customGray">
+    <div className="w-1/2 h-screen text-stone-700">
+      <div className="flex flex-col justify-center ">
         <div className='justify-between flex items-center'>
           <h1 className="text-4xl font-bold mb-4  ">{project.name}</h1>
           <button onClick={deleteProject}>Delete</button>
@@ -35,7 +42,7 @@ export default function SelectedProject({ project, deleteProject }) {
         <hr />
 
         <div className="mt-4">
-          <h2 className="text-2xl text-black font-bold mb-4">Tasks</h2>
+          <h2 className="text-2xl font-bold mb-4 text-stone-800">Tasks</h2>
           <div className="flex items-center gap-4">
             <input 
               type="text" 
@@ -46,11 +53,11 @@ export default function SelectedProject({ project, deleteProject }) {
             <button onClick={handleCreateTaskClick}  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">Add Task</button>
           </div>
           <div>
-            <ul className='mt-4'>
+            <ul className='mt-4 bg-gray-100 rounded-lg'>
               {tasks.map((task, index) => (
-                <li key={index} className='flex items-center mb-2 justify-between p-2 bg-gray-100 rounded-lg '>
+                <li key={index} className='flex items-center mb-2 justify-between p-2   '>
                   <span>{task}</span>
-                  <button>Delete Task</button>
+                  <button onClick={() => deleteTask(task)}>Clear</button>
                 </li>
               ))}
             </ul>

@@ -8,6 +8,9 @@ export default {
     extend: {
       colors: {
         customGray: '#454241',
+        customGrayText: '#9b9997',
+
+
       },
     },
   },

@@ -9,10 +9,10 @@ function ProjectSidebar({ onCreateProject, projects, openProject }) {
       <nav className="flex flex-col gap-1 min-w-[240px] p-2 font-sans text-base font-normal text-gray-700">
         <button onClick={onCreateProject} className="flex bg-gray-600 w-fit p-3 rounded-xl hover:bg-gray-700 text-white font-semibold">+ ADD PROJECT</button>
       </nav>
-      <ul className='flex flex-col gap-2 p-2 font-sans text-base font-normal text-gray-700'>
+      <ul className='flex flex-col gap-2 p-2 text-base font-normal '>
         {projects.map((project, index) => (
-          <li key={index} className="flex items-center justify-between p-2 bg-gray-100 rounded-lg hover:bg-gray-200">
-            <button className='w-full' onClick={() => openProject(project)}>{project.name}</button>
+          <li key={index} className="flex items-center justify-between p-2 text-stone-400 hover:text-stone-200 text-lg">
+            <button className='' onClick={() => openProject(project)}>{project.name}</button>
           </li>
         ))}
       </ul>
