@@ -1,10 +1,13 @@
 import React from 'react';
 
-export default function SelectedProject({ project }) {
+export default function SelectedProject({ project, deleteProject }) {
   return (
     <div className="w-1/2 h-screen">
       <div className="flex flex-col justify-center ">
-        <h1 className="text-2xl font-bold mb-4">{project.name}</h1>
+        <div className='justify-between flex items-center'>
+          <h1 className="text-2xl font-bold mb-4">{project.name}</h1>
+          <button onClick={deleteProject}>Delete</button>
+        </div>
         <p className="text-lg mb-4">{project.description}</p>
         <hr />
 

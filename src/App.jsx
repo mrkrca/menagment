@@ -37,6 +37,12 @@ function App() {
     }));
   }
 
+  function handleDeleteProject() {
+    const newProjects = projects.filter(project => project.name !== selectedProject.name);
+    setProjects(newProjects);
+    setSelectedProject(null);
+  }
+
   return (
     <>
       <div className="flex h-screen">
@@ -47,7 +53,11 @@ function App() {
         />
    {selectedProject ? (
           <div className="flex flex-grow mt-20 justify-center ">
-            <SelectedProject project={selectedProject} />
+            <SelectedProject 
+            project={selectedProject}
+            deleteProject={handleDeleteProject}
+             />
+
           </div>
         ) : (
           <div className="flex flex-grow items-center justify-center">
