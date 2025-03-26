@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import Input from './input';
 
 export default function SelectedProject({ project, deleteProject, updateTasks }) {
   const [task, setTask] = useState('');
@@ -35,13 +35,15 @@ export default function SelectedProject({ project, deleteProject, updateTasks })
         <div className="mt-4">
           <h2 className="text-2xl font-bold mb-4 text-stone-800">Tasks</h2>
           <div className="flex items-center gap-4">
-            <input
-              type="text"
-              value={task}
-              className="flex-grow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-              placeholder="Task"
-              onChange={handleCreateTask}
+
+            <Input
+             type="text"
+             value={task}
+             placeholder="Task"
+             handlers={[handleCreateTask]}
+             className="flex-grow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
             />
+          
             <button
               onClick={handleCreateTaskClick}
               className=" text-stone-800 font-bold py-2 px-4 rounded-lg"
