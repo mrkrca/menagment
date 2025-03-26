@@ -44,7 +44,7 @@ export default function SelectedProject({ project, deleteProject, updateTasks })
             />
             <button
               onClick={handleCreateTaskClick}
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg"
+              className=" text-stone-800 font-bold py-2 px-4 rounded-lg"
             >
               Add Task
             </button>
