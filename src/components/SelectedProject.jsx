@@ -1,14 +1,37 @@
-import React from 'react';
+
+import React, {useState} from 'react';
+
+
+
+
 
 export default function SelectedProject({ project, deleteProject }) {
+
+  const [task, setTask] = useState('');
+  const [tasks, setTasks] = useState([]);
+
+  function handleCreateTask(e){
+    setTask(e.target.value);
+  }
+  
+
+  function handleCreateTaskClick(){
+    setTasks([...tasks, task]);
+    
+
+  }
+
+
   return (
-    <div className="w-1/2 h-screen">
-      <div className="flex flex-col justify-center ">
+    <div className="w-1/2 h-screen ">
+      <div className="flex flex-col justify-center text-customGray">
         <div className='justify-between flex items-center'>
-          <h1 className="text-2xl font-bold mb-4">{project.name}</h1>
+          <h1 className="text-4xl font-bold mb-4  ">{project.name}</h1>
           <button onClick={deleteProject}>Delete</button>
         </div>
+        <p className="text-sm mb-4 font-semibold opacity-60 ">{project.date}</p>
         <p className="text-lg mb-4">{project.description}</p>
+       
         <hr />
 
         <div className="mt-4">
@@ -18,8 +41,19 @@ export default function SelectedProject({ project, deleteProject }) {
               type="text" 
               className="flex-grow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" 
               placeholder="Task" 
+              onChange={handleCreateTask}
             />
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">Add Task</button>
+            <button onClick={handleCreateTaskClick}  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">Add Task</button>
+          </div>
+          <div>
+            <ul className='mt-4'>
+              {tasks.map((task, index) => (
+                <li key={index} className='flex items-center mb-2 justify-between p-2 bg-gray-100 rounded-lg '>
+                  <span>{task}</span>
+                  <button>Delete Task</button>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>

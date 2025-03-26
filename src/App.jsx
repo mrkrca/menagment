@@ -3,11 +3,13 @@ import ProjectSidebar from "./components/ProjectSideBar";
 import NoProjectSelected from "./components/NoProjectSelected";
 import PopUpCreateProject from "./components/PopUpCreateProject";
 import SelectedProject from "./components/SelectedProject";
+import moment from 'moment';
+
 
 function App() {
   const [isPopUpVisible, setIsPopUpVisible] = useState(false);
   const [projects, setProjects] = useState([]);
-  const [newProject, setNewProject] = useState({ name: '', description: '' });
+  const [newProject, setNewProject] = useState({ name: '', description: '', date: moment().format('YYYY-MM-DD') });
   const [selectedProject, setSelectedProject] = useState(null);
 
 
